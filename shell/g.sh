@@ -1,8 +1,8 @@
 #!/bin/bash
-x=0
+x=1
 while true
     do
-        if [ -e $1 ]; then
+        if [ $1 -a -e $1 ]; then
             videopath=$1
         else
             read -p "PLS write your video path: " videopath
@@ -10,15 +10,13 @@ while true
 
         if [ -e $videopath ]; then
             echo -e "$videopath is exists"
-        elif [ $x -gt 5 ]; then
+        elif [ $x -gt 3 ]; then
             echo -e "are you kidding me?????"
             exit 1
         else
             echo "$videopath is not exists"
             x=$(($x + 1))
             continue
-            #read -p "PLS write your video path: " videopath
-            #exit 1
         fi
         
         # example
