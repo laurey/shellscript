@@ -21,8 +21,11 @@ while true
         fi
 
         # example 
+        # 输出JSON格式的影音文件信息
         # ffprobe -v quiet -print_format json -show_format -show_streams XSZYH.mp3 > JSON.XIAO.SA.mp3.infolog
-        # 输出JSON格式的MP3文件信息
+
+        # example
+        # 提取视频文件中的音频并保存为MP3格式
         # !!!select one video stream and copy them to an output file
         # ffmpeg -i They-Don\'t-Care-About-Us.mp4 -map 0 -b:a 128k -acodec -id3v2_version 3 -ar 44100 -vn test.mp3
         # ffmpeg -i test.mp3 -ar 44100 -map  0:a -b:a 128K -id3v2_version 3 t.mp3
