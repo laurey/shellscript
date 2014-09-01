@@ -32,16 +32,16 @@ while true
 
         # example 
         # 将视频中任意一帧保存为指定宽高图片 
-        # ffmpeg -i They-Don\'t-Care-About-Us.mp4 -ss 89 -y -f image2 -s 1280x720 -vframes 1 snap1.png 
+        # ffmpeg -i They-Don\'t-Care-About-Us.mp4 -ss 89 -y -f image2 -s 1280x720 -vframes 1 -an snap1.png 
         #
         # 将视频中N帧保存为指定宽高的GIF动画 
-        # ffmpeg -i yourvideopath -vframes N -y -f gif -s widthxheight outputfilename
-        # ffmpeg -i Dragon.Ball.Kai.mp4 -ss 550 -vframes 188 -y -f gif -s 1280x720 animate.gif
+        # ffmpeg -i yourvideopath -vframes N -y -f gif -s widthxheight -an outputfilename
+        # ffmpeg -i Dragon.Ball.Kai.mp4 -ss 550 -vframes 188 -y -f gif -s 1280x720 -an animate.gif
 
         outputfile="~/Desktop/"$(date +%Y%m%d%H%M%S)".png"
-        # command="ffmpeg -i $videopath -ss 188 -y -f image2 -s 720x480 -vframes 1 $outputfile"
+        # command="ffmpeg -i $videopath -ss 188 -y -f image2 -s 720x480 -vframes 1 -an $outputfile"
 
-        command="ffmpeg -i $videopath -ss 188 -y -f image2 -s 720x480 -vframes 1 $outputfile"
+        command="ffmpeg -i $videopath -ss 188 -y -f image2 -s 720x480 -vframes 1 -an $outputfile"
         echo $command
         eval $command
        break
