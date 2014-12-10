@@ -29,10 +29,15 @@ while true
         # example 
         # 提取视频文件中的部分 
         # ffmpeg -i They-Don\'t-Care-About-Us.mp4 -ss 00:09:03 -map 0 -b:a 128k -acodec copy -vcodec copy -t 00:05:55 fragment.mp4
-
+        #
+        #
         # example 
         # 将视频中任意一帧保存为指定宽高图片 
         # ffmpeg -i They-Don\'t-Care-About-Us.mp4 -ss 89 -y -f image2 -s 1280x720 -vframes 1 -an snap1.png 
+        #
+        # 将视频中起始时间为M的N帧保存为指定宽高的N张图片 
+        # ffmpeg -i They-Do-not-Care-About-Us.mp4 -ss 89 -y -f image2 -s 1280x720 -vframes 100 -an snap-%03d.png 
+        #
         #
         # 将视频中N帧保存为指定宽高的GIF动画 
         # ffmpeg -i yourvideopath -vframes N -y -f gif -s widthxheight -an outputfilename
