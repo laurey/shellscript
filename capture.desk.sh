@@ -1,5 +1,6 @@
 #!/bin/bash
 # desc: use ffmpeg command line capture desktop
+#     just support mp4 format
 # author : luis
 x=1
 home=$HOME
@@ -28,9 +29,10 @@ while true
 
         # example 
         # ffmpeg -report -s 1280x720 -vframes 25 -f x11grab -i :0.0+0,0 output-5721.mp4 
-        output=$videopath"/output-"$(date +%Y%m%d%H%M%S)".mp4"
+        dt=$(date +%Y%m%d%H%M%S)
+        output=$videopath"/output-"$dt".mp4"
 
-        command="ffmpeg -report -s 1280x720 -vframes 25 -f x11grab -i :0.0+0,0 $output"
+        command="ffmpeg -report -s 1280x720 -vframes 25 -f x11grab -i :0.0+0,0 -qscale 10 -aspect 16:9 -metadata title='测试录屏-'$dt $output"
         echo $command
         eval $command
        break
