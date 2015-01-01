@@ -17,7 +17,7 @@ while true
             echo -e "$videopath is exists"
         elif [ -z $videopath ]; then
             videopath=$home
-        elif [ $x -gt 5 ]; then
+        elif [ $x -gt 10 ]; then
             echo -e "Are you kidding me????? \nI QUIT!!!!"
             exit 1
         else
