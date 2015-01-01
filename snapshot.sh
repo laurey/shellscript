@@ -30,7 +30,6 @@ while true
         # 提取视频文件中的部分 
         # ffmpeg -ss 00:09:03 -i They-Don\'t-Care-About-Us.mp4 -map 0 -b:a 128k -acodec copy -vcodec copy -t 00:05:55 fragment.mp4
         #
-        #
         # example 
         # 将视频中任意一帧保存为指定宽高图片 
         # ffmpeg -ss 89 -i They-Don\'t-Care-About-Us.mp4 -y -f image2 -s 1280x720 -vframes 1 -an snap1.png 

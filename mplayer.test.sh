@@ -1,4 +1,6 @@
 #!/bin/bash
+set -u
+
 x=0
 while true
     do
@@ -17,8 +19,6 @@ while true
             echo "$videopath is not exists"
             x=$(($x + 1))
             continue
-            #read -p "PLS write your video path: " videopath
-            #exit 1
         fi
         
         # 输出视频文件基本信息 
