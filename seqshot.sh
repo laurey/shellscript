@@ -1,6 +1,6 @@
 #!/bin/bash
 #desc:
-#   从第10秒随机视频截图5张
+#   从第ss秒随机视频截图n张
 #date: 08.24.2014
 #author: luis
 set -x
