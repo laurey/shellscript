@@ -1,4 +1,5 @@
 #!/bin/bash
+#desc : 分离视频中的音频,并保存为mp3格式文件
 x=1
 while true
     do

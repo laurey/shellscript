@@ -1,5 +1,6 @@
 #!/bin/bash
-set -u
+#set -u
+set -x
 
 x=0
 while true
