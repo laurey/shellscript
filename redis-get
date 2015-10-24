@@ -1,0 +1,51 @@
+#!/bin/bash
+# desc:
+# date: 25.06.2016
+# author: luis
+# set -x
+
+portnum=6379
+dbnum=0
+keyspattern=''
+cmd='GET'
+
+function usage() {
+    echo 'aaaa'
+    echo ' dddddd'
+    exit 0
+}
+
+while true
+    do
+        usage
+        if [ -z $1 ]; then
+            read -p "PLS input the portnum: " portnum 
+        else
+            portnum=$1
+        fi
+
+        if [ -z $2 ]; then
+            read -p "PLS input the dbnum: " dbnum 
+        else
+            dbnum=$2
+        fi
+
+        if [ -z $3 ]; then
+            read -p "PLS input the keyspattern: " keyspattern
+        else
+            keyspattern=$3
+        fi
+
+        if [ -z $4 ]; then
+            read -p "PLS input the support cmd: " cmd
+        else
+            cmd=$4
+        fi
+
+        # redis-cli -p ${portnum} -n ${dbnum} KEYS ${keyspattern} | xargs redis-cli -p <portnum> -n <DBNum> <CMD> 
+        command="redis-cli -p ${portnum} -n ${dbnum} KEYS ${keyspattern} | xargs redis-cli -p ${portnum} -n ${dbnum} ${cmd}"
+        # echo $command
+        eval $command
+
+        break
+    done
