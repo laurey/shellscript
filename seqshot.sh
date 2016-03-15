@@ -7,18 +7,17 @@ set -x
 
 x=1
 ss=10
-input=0
 while true
     do
-        if [ $1 -a -e $1 ]; then
-            videopath=$1
-        else
+        if [[ -z $1 ]] || [[ ! -e $1 ]]; then
             read -p "PLS write your video path: " videopath
+        else
+            videopath=$1
         fi
 
-        if [ $videopath -a -e $videopath ]; then
+        if [[ -e $videopath ]]; then
             echo -e "$videopath is exists"
-        elif [ $x -gt 5 ]; then
+        elif [[ $x -gt 5 ]]; then
             echo -e "Are you kidding me????? \nI Quit!!!!"
             exit 1
         else
@@ -27,7 +26,6 @@ while true
             continue
         fi
 
-        #if [ -z $2 ]; then
         if [[ -z $2 ]]; then
             read -p "PLS write the num you wish snap: " input
         else
@@ -39,26 +37,35 @@ while true
             exit 3;
         fi
 
-        if [ -z $input -o $input -lt 0 ]; then
-        #if [ -z $input ] || [ $input -lt 0 ]; then
-        #if [[ -z "$input" ]] || [ $input -lt 0 ]; then
+        if [[ -z "$input" ]] || [[ $input -le 0 ]]; then
             input=5
-        elif [ $input -gt 50 ]; then
+        elif [[ $input -gt 50 ]]; then
             input=20
+        fi
+
+        if [[ -z $3 ]] || [[ ! -d $3 ]]; then
+            read -p "PLS write your destination path: " outpath
+        else
+            outpath=$3
+        fi
+
+        if [[ ! -d $outpath ]]; then
+            echo -e 'not exist destination directory: ' $outpath
+            exit 4;
         fi
 
         # get video width & height
         width=$(/usr/bin/mediainfo --Inform="Video;%Width%" $videopath)
         height=$(/usr/bin/mediainfo --Inform="Video;%Height%" $videopath)
 
-        if [ $width -le 0 ]; then
+        if [[ $width -le 0 ]]; then
             echo 'no width. width => ' ${width}
-            exit 4
+            exit 5
         fi
         
-        if [ $height -le 0 ]; then
+        if [[ $height -le 0 ]]; then
             echo 'no height. height => ' ${height}
-            exit 5;
+            exit 6;
         fi
 
         for i in $(seq $input);
@@ -67,7 +74,7 @@ while true
                 ss=$[i * rand + 100]
                 # example 
                 # 将视频中任意一帧保存为指定宽高图片 
-                outputfile="~/Desktop/"$(date +%Y%m%d%H%M%S)"-"$i".png"
+                outputfile=${outpath}$(date +%Y%m%d%H%M%S)"-"$i".png"
                 # command="ffmpeg -ss 188 -i $videopath -y -f image2 -s 720x480 -vframes 1 -an $outputfile "
 
                command="nohup ffmpeg -ss $ss -i $videopath -y -f image2 -s ${width}x${height} -vframes 1 -an $outputfile "

@@ -2,7 +2,7 @@
 x=1
 while true
     do
-        if [ $1 -a -e $1 ]; then
+        if [ ! -z $1 ]; then
             videopath=$1
         else
             read -p "PLS write your video path: " videopath
